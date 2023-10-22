@@ -1,4 +1,4 @@
-﻿using Lab2_24.Models;
+using Lab2_24.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,5 +42,20 @@ namespace Lab2_24.Controllers
             students.RemoveAt(studentIndex);
             return students;
         }
+
+        public List<Student> DeleteByName(Student student)
+        {
+            var StudentIndex = students.FindIndex(x => x.Name == student.Name);
+            students.RemoveAt(StudentIndex);
+            return students;
+        }
+        public List<Student> DeleteByAge(Student student)
+        {
+            var StudentIndex = students.FindIndex(x => x.Age == student.Age);
+            students.RemoveAt(StudentIndex);
+            return students;
+        }
+
+
     }
 }
