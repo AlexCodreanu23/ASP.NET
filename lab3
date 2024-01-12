@@ -1,37 +1,20 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-#nullable disable
-
-namespace Lab3_23.Migrations
+namespace Lab3_23.Models.Base
 {
-    /// <inheritdoc />
-    public partial class Initial : Migration
+    public class Base2 : IBase2
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                });
-        }
+        [Key]
+        // Generates a value when a row is inserted
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //// Generates a value when a row in inserted or update
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //// does not update
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Students");
-        }
+        public Guid Id { get; set; }
+        public DateTime? DateTime { get; set; }
+        public DateTime? LastModified { get; set; }
     }
 }
